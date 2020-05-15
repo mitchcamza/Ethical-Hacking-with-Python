@@ -25,6 +25,10 @@ def change_mac(interface, new_mac):
     subprocess.call(["ifconfig", interface, "hw", "ether", new_mac])
     subprocess.call(["ifconfig", interface, "up"])
 
-
+# Get the interface and new MAC from the user and pass them to the change_mac function
 options = get_arguments()  
 change_mac(options.interface, options.new_mac)  
+
+# check the ifconfig result for the selected interface to make sure that the MAC address was changed successfully
+ifconfig_result = subprocess.check_output(["ifconfig", options.interface])
+print(ifconfig_result)
