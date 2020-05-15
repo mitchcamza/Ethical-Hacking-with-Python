@@ -26,20 +26,22 @@ def change_mac(interface, new_mac):
     subprocess.call(["ifconfig", interface, "hw", "ether", new_mac])
     subprocess.call(["ifconfig", interface, "up"])
 
-# Get the interface and new MAC from the user and pass them to the change_mac function
+
+def get_current_mac(interface):
+    """Checks the ifconfig result for the selected interface and returns the current MAC address"""
+    ifconfig_result = subprocess.check_output(["ifconfig", interface])
+    mac_address_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", ifconfig_result)
+
+    if mac_address_search_result:
+        return mac_address_search_result.group(0)
+    else:
+        print("[-] Could not read MAC address.")
+        
+
 options = get_arguments()  
+current_mac = get_current_mac(options.interface)
+
+# if no current mac is returned, 'none' will be returned
+# since we can't concatenate a string with NoneType, we need to type cast str to current_mac
+print("Current MAC = " + str(current_mac))
 change_mac(options.interface, options.new_mac)  
-
-# check the ifconfig result for the selected interface to make sure that the MAC address was changed successfully
-ifconfig_result = subprocess.check_output(["ifconfig", options.interface])
-print(ifconfig_result)
-
-# create a regex rule to search for the MAC address from the ifconfig result
-mac_address_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", ifconfig_result)
-
-# if a result was found
-if mac_address_search_result:
-    # print only the first occurrence of mac_address_search_result
-    print(mac_address_search_result.group(0))
-else:
-    print("[-] Could not read MAC address.")
