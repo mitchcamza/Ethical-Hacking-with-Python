@@ -39,9 +39,15 @@ def get_current_mac(interface):
         
 
 options = get_arguments()  
-current_mac = get_current_mac(options.interface)
 
-# if no current mac is returned, 'none' will be returned
-# since we can't concatenate a string with NoneType, we need to type cast str to current_mac
+# print the current MAC for the selected interface
+current_mac = get_current_mac(options.interface)
 print("Current MAC = " + str(current_mac))
-change_mac(options.interface, options.new_mac)  
+
+# change the MAC and diplay the new MAC if the change was successfull, else display an error message
+change_mac(options.interface, options.new_mac)
+current_mac = get_current_mac(options.interface)
+if current_mac == options.new_mac:
+    print("[+] MAC address was successfully changed to " + current_mac)
+else:
+    print("[-] MAC address could not be changed.")
