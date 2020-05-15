@@ -2,6 +2,7 @@
 
 import subprocess   
 import optparse     
+import re
 
 def get_arguments():
     """Gets arguments from the user"""
@@ -32,3 +33,13 @@ change_mac(options.interface, options.new_mac)
 # check the ifconfig result for the selected interface to make sure that the MAC address was changed successfully
 ifconfig_result = subprocess.check_output(["ifconfig", options.interface])
 print(ifconfig_result)
+
+# create a regex rule to search for the MAC address from the ifconfig result
+mac_address_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", ifconfig_result)
+
+# if a result was found
+if mac_address_search_result:
+    # print only the first occurrence of mac_address_search_result
+    print(mac_address_search_result.group(0))
+else:
+    print("[-] Could not read MAC address.")
