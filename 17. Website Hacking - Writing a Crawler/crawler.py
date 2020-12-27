@@ -8,8 +8,9 @@ def request(url):
     except requests.exceptions.ConnectionError:
         pass
 
-# target_url = "google.com"
-target_url = "10.0.0.6"
+# target_url = "http://10.0.2.10/mutillidae/"
+# target_url = "hashtag.co.za"
+target_url = "google.co.za"
 
 # with open("17. Website Hacking - Writing a Crawler/subdomains.txt", "r") as subdomains:
 #     for line in subdomains:
@@ -19,7 +20,7 @@ target_url = "10.0.0.6"
 #         if response:
 #             print("[+] Discovered subdomain --> " + test_url)
 
-with open("17. Website Hacking - Writing a Crawler/directories.txt", "r") as directories:
+with open("17. Website Hacking - Writing a Crawler\directories.txt", "r") as directories:
     for line in directories:
         word = line.strip()
         test_url = target_url + "/" + word
