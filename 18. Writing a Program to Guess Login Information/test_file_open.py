@@ -1,0 +1,1 @@
+open("C:\\Users\\Mitch\\Google Drive\\Ethical Hacking\\Password_Cracking\\Wordlists\\id_numbers_6dig", "r")

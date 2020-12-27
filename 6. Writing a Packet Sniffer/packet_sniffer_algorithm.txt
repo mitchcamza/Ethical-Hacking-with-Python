@@ -1,0 +1,22 @@
+0. import required modules
+    import scapy.all as scapy
+    from scapy.layers import http
+
+
+1. create a sniff function that takes one argument
+    use scapy.sniff with 4 arguments:
+        1. iface=interface # the interface we will be using
+        2. store=False # don't store the information in the memory (saves system resources)
+        3. prn=proccess_sniffed_packet # specifies a call-back function 
+        (executes a function every time this function is called)
+        4. filter="" # (optional argument) - filters packets according to ip protocol or port number
+
+
+2. define a proccess_sniffed_packet function that takes the packet as an argument
+    check if the packet has an HTTPRequest layer (same as filter param)
+        if so, print the packet
+
+
+3. call the sniff function from the main function and parse the interface as an argument (eg. eth0)
+
+

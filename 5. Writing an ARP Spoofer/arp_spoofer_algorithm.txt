@@ -1,0 +1,52 @@
+0. import required modules
+    import scapy.all as scapy
+    import time
+    import argparse
+
+    create a get_arguments function to allow the user to parse arguments
+    set up port forwarding on the spoofing machine to allow spoofed 
+        clients to retain an internet connection.
+        (echo '1' > /proc/sys/net/ipv4/ip_forward)
+
+1. Create a packet using scapy
+    set the op=2 to send the packet as a response
+    set the pdst to the target's/victim's ip
+    set the hwdst to the target's mac address
+    set the psrc to the router's ip
+
+2. Send the packet with scapy   
+
+
+3. Refactor 
+    create a spoof function that receives two arguments(target_ip, spoof_ip)
+        call the get_mac function to get the hwdst
+        1. create a packet using scapy
+        2. send the packet with scapy
+    create a get_mac function that takes one argument(ip)
+        create an arp request from the ip parsed to the function
+        broadcast the client's MAC to all devices on the network
+        get a list of answers and only look at the first element
+        return the mac address for the requested ip
+
+
+4. Call the Spoof function in a while True loop
+    the spoof function runs until CTRL + C is pressed
+    the spoof function calls the get_mac function
+
+
+5. Print a status message to let the user know how many packets have been sent
+    create a counter for packets
+    increment the counter by 2 for each iteration of the loop
+    sleep for 2 seconds before sending the next packet
+
+
+6. Add Exeption Handling
+    run the loop of function calls in a try block
+    for a KeyboardInterrupt, print a message before exiting the program
+    
+    7. Restore the original ARP tables before exiting the program
+
+
+
+
+

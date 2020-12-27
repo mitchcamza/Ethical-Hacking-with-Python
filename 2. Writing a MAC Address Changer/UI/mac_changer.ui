@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>mac_changer</class>
+ <widget class="QDialog" name="mac_changer">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>151</width>
+    <height>144</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Mac Changer</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QComboBox" name="combobox_interface">
+     <item>
+      <property name="text">
+       <string>eth0</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>wlan0</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="new_mac">
+     <property name="placeholderText">
+      <string>New MAC</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="random">
+     <property name="text">
+      <string>Generate Random</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="change_mac">
+     <property name="text">
+      <string>Change MAC</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
