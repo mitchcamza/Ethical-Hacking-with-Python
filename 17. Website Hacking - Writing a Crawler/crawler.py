@@ -9,7 +9,7 @@ def request(url):
         pass
 
 # target_url = "http://10.0.2.10/mutillidae/"
-target_url = "google.co.za"
+target_url = "10.0.0.5"
 
 # with open("17. Website Hacking - Writing a Crawler/subdomains.txt", "r") as subdomains:
 #     for line in subdomains:
@@ -19,7 +19,6 @@ target_url = "google.co.za"
 #         if response:
 #             print("[+] Discovered subdomain --> " + test_url)
 
-results = open(f"17. Website Hacking - Writing a Crawler/{target_url}_results.txt", "w+")
 with open("17. Website Hacking - Writing a Crawler/directories.txt", "r") as directories:
     for line in directories:
         word = line.strip()
@@ -27,6 +26,3 @@ with open("17. Website Hacking - Writing a Crawler/directories.txt", "r") as dir
         response = request(test_url)
         if response:
             print("[+] Discovered URL --> " + test_url)
-            results.write(str(test_url) + '\n')
-
-results.close()
