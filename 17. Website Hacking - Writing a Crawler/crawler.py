@@ -2,9 +2,19 @@
 
 import requests
 
-url = "10.0.0.6"
-try:
-    get_response = requests.get("http://" + url)
-    print(get_response)
-except requests.exceptions.ConnectionError:
-    pass
+def request(url):
+    try:
+        return requests.get("http://" + url)
+    except requests.exceptions.ConnectionError:
+        pass
+
+target_url = "google.com"
+
+with open("17. Website Hacking - Writing a Crawler\subdomains.txt", "r") as subdomains:
+    for line in subdomains:
+        word = line.strip()
+        test_url = word + "." + target_url
+        response = request(test_url)
+        if response:
+            print("[+} Discovered subdomain --> " + test_url)
+
