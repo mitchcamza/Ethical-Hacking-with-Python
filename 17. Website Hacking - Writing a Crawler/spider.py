@@ -2,16 +2,16 @@
 
 import requests
 import re
+import urllib.parse as urlparse
 
-def request(url):
-    try:
-        return requests.get("http://" + url)
-    except requests.exceptions.ConnectionError:
-        pass
+target_url = "http://10.0.2.10/mutillidae/"
 
-# target_url = "http://10.0.2.10/mutillidae/"
-target_url = "10.0.0.5/admin"
+def extract_links_from(url):
+    response = requests.get(url)
+    return re.findall('(?:href=")(.*?)"', str(response.content))
 
-response = request(target_url)
-href_links = re.findall('(?:href=")(.*?)"', str(response.content))
-print(href_links)
+href_links = extract_links_from(target_url)
+for link in href_links:
+    link = urlparse.urljoin(target_url, link)
+    if target_url in link:  # remove external links
+        print(link) 
