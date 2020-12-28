@@ -8,8 +8,7 @@ def request(url):
     except requests.exceptions.ConnectionError:
         pass
 
-# target_url = "http://10.0.2.10/mutillidae/"
-target_url = "10.0.0.5"
+target_url = "http://10.0.2.10/mutillidae/"
 
 # with open("17. Website Hacking - Writing a Crawler/subdomains.txt", "r") as subdomains:
 #     for line in subdomains:
